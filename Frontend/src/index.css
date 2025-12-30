@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Siddha AI Design System - Ancient Wisdom + Modern AI */
+
+@layer base {
+  :root {
+    /* Siddha-inspired earthy palette */
+    --background: 30 15% 6%;
+    --foreground: 38 25% 92%;
+
+    --card: 30 12% 10%;
+    --card-foreground: 38 25% 92%;
+
+    --popover: 30 12% 10%;
+    --popover-foreground: 38 25% 92%;
+
+    /* Deep herbal green - primary */
+    --primary: 142 35% 35%;
+    --primary-foreground: 38 25% 95%;
+
+    /* Sandalwood brown - secondary */
+    --secondary: 30 20% 18%;
+    --secondary-foreground: 38 25% 92%;
+
+    /* Muted earthy tones */
+    --muted: 30 10% 15%;
+    --muted-foreground: 38 15% 60%;
+
+    /* Turmeric gold - accent */
+    --accent: 42 80% 50%;
+    --accent-foreground: 30 15% 6%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 38 25% 95%;
+
+    --border: 30 15% 20%;
+    --input: 30 15% 15%;
+    --ring: 142 35% 35%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom Siddha colors */
+    --siddha-herb: 142 35% 35%;
+    --siddha-turmeric: 42 80% 50%;
+    --siddha-sandalwood: 25 30% 45%;
+    --siddha-earth: 20 25% 20%;
+    --siddha-glow: 42 90% 60%;
+  }
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism effects */
+  .glass {
+    @apply bg-card/40 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-strong {
+    @apply bg-card/60 backdrop-blur-2xl border border-border/60;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px hsl(var(--siddha-turmeric) / 0.25);
+  }
+
+  .glow-subtle {
+    box-shadow: 0 0 60px hsl(var(--siddha-herb) / 0.15);
+  }
+
+  /* Text gradients */
+  .text-gradient-siddha {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--siddha-turmeric)), hsl(var(--primary)), hsl(var(--siddha-sandalwood)));
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    @apply relative;
+  }
+
+  .animated-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300;
+    background: linear-gradient(90deg, hsl(var(--siddha-turmeric)), hsl(var(--primary)));
+  }
+
+  .animated-underline:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

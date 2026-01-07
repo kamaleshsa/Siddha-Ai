@@ -125,20 +125,46 @@ export const AppSidebar = ({
                     />
                   </div>
 
-                  {/* Footer - Medical Disclaimer */}
-                  <div className="p-4 border-t border-border/40 bg-background/20 backdrop-blur-sm shrink-0">
-                    <div className="flex gap-3 px-2">
-                       <div className="mt-0.5 text-accent shrink-0">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                       </div>
-                       <div>
-                         <p className="text-[10px] font-bold text-accent mb-0.5 uppercase tracking-wider">
-                           Medical Disclaimer
-                         </p>
-                         <p className="text-[10px] text-muted-foreground leading-relaxed">
-                           Information is educational only. Consult a Vaidya or doctor for medical advice.
-                         </p>
-                       </div>
+                  {/* Footer - Developer Tag & Medical Disclaimer */}
+                  <div className="shrink-0">
+                    {/* Developer Tag - Mobile & Tablet */}
+                    <div className="lg:hidden px-4 py-3 border-t border-border/40">
+                      <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl glass border-border/40">
+                        {/* Avatar */}
+                        <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-siddha-herb/40 shadow-md flex-shrink-0">
+                          <img
+                            src="/kamalesh-avatar.jpg"
+                            alt="Kamalesh S A"
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </div>
+                        {/* Name */}
+                        <div className="flex flex-col">
+                          <span className="text-xs font-semibold text-foreground tracking-wide">
+                            KAMALESH S A
+                          </span>
+                          <span className="text-[10px] text-siddha-turmeric font-medium">
+                            Developer
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Medical Disclaimer */}
+                    <div className="p-4 border-t border-border/40 bg-background/20 backdrop-blur-sm">
+                      <div className="flex gap-3 px-2">
+                         <div className="mt-0.5 text-accent shrink-0">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                         </div>
+                         <div>
+                           <p className="text-[10px] font-bold text-accent mb-0.5 uppercase tracking-wider">
+                             Medical Disclaimer
+                           </p>
+                           <p className="text-[10px] text-muted-foreground leading-relaxed">
+                             Information is educational only. Consult a Vaidya or doctor for medical advice.
+                           </p>
+                         </div>
+                      </div>
                     </div>
                   </div>
                 </div>

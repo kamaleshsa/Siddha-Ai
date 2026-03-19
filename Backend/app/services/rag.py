@@ -12,12 +12,12 @@ import sys
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 logger = logging.getLogger(__name__)
 
-# Configure OpenRouter client
+# Configure NVIDIA client
 client = AsyncOpenAI(
-    api_key=settings.OPENROUTER_API_KEY,
-    base_url="https://openrouter.ai/api/v1",
+    api_key=settings.NVIDIA_API_KEY,
+    base_url="https://integrate.api.nvidia.com/v1",
 )
-MODEL_NAME = "google/gemini-2.0-flash-exp:free"
+MODEL_NAME = "meta/llama-3.1-70b-instruct"
 
 
 async def load_system_prompt() -> str:
@@ -79,18 +79,11 @@ async def generate_answer(question: str) -> dict:
     # 4. Generate
     start_gen = time.time()
 
-    # List of free models to try in order
+    # List of NVIDIA models to try in order
     models_to_try = [
-        "google/gemini-2.0-flash-exp:free",
-        "deepseek/deepseek-r1:free",
-        "meta-llama/llama-3.3-70b-instruct:free",
-        "meta-llama/llama-4-scout:free",
-        "google/gemma-2-9b-it:free",
-        "mistralai/mistral-nemo:free",
-        "mistralai/mistral-7b-instruct:free",
-        "xiaomi/mimo-v2-flash:free",
-        "qwen/qwen-2.5-72b-instruct:free",
-        "z-ai/glm-4.5-air:free",
+        "meta/llama-3.1-70b-instruct",
+        "meta/llama-3.1-8b-instruct",
+        "nvidia/llama-3.1-nemotron-70b-instruct",
     ]
 
     answer_text = "I encountered an error generating the answer after trying all available models."
@@ -98,16 +91,12 @@ async def generate_answer(question: str) -> dict:
     for model_str in models_to_try:
         try:
             logger.info(f"Trying generation with model: {model_str}")
-            # Use OpenRouter via OpenAI SDK
+            # Use NVIDIA API via OpenAI SDK
             response = await client.chat.completions.create(
                 model=model_str,
                 messages=[{"role": "user", "content": final_prompt}],
                 temperature=0.2,
                 top_p=0.95,
-                extra_headers={
-                    "HTTP-Referer": settings.ALLOWED_ORIGINS.split(",")[0],
-                    "X-Title": "Siddha AI",
-                },
             )
             answer_text = response.choices[0].message.content
 

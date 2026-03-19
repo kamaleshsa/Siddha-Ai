@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     GEMINI_API_KEY: str
-    OPENROUTER_API_KEY: str | None = None
+    NVIDIA_API_KEY: str | None = None
     CHROMA_DB_PATH: str = "app/db/chroma"
     METADATA_DB_URL: str = "sqlite+aiosqlite:///app/db/metadata.db"
     ENVIRONMENT: str = "development"

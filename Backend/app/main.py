@@ -36,6 +36,11 @@ app.include_router(crawl.router, prefix="/api", tags=["Crawling"])
 app.include_router(ask.router, prefix="/api", tags=["Q&A"])
 
 
+@app.get("/", tags=["Root"])
+async def root():
+    return {"message": "Welcome to Siddha AI Backend. Visit /docs for API documentation."}
+
+
 @app.get("/health", tags=["Health"])
 async def health_check():
     return {"status": "ok", "environment": settings.ENVIRONMENT}

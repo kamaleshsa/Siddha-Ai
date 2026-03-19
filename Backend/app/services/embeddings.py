@@ -1,31 +1,35 @@
-import google.generativeai as genai
+from openai import AsyncOpenAI
 from app.config import settings
 
-genai.configure(api_key=settings.GEMINI_API_KEY)
+# Configure NVIDIA client for embeddings
+client = AsyncOpenAI(
+    api_key=settings.NVIDIA_API_KEY or "dummy-key-to-prevent-startup-crash",
+    base_url="https://integrate.api.nvidia.com/v1",
+)
 
-# Use the embedding model - specifically text-embedding-004 or similar
-EMBEDDING_MODEL = "models/text-embedding-004"
-
+# Use NVIDIA's embedding model
+EMBEDDING_MODEL = "nvidia/nv-embedqa-e5-v5"
 
 async def get_embedding(text: str) -> list[float]:
     """
-    Generates an embedding for the given text using Gemini.
+    Generates an embedding for the given text using NVIDIA's API.
     """
-    # Gemini embedding API
-    result = genai.embed_content(
+    response = await client.embeddings.create(
+        input=[text],
         model=EMBEDDING_MODEL,
-        content=text,
-        task_type="retrieval_document",
-        title="Siddha Text",
+        encoding_format="float",
+        extra_body={"input_type": "passage"},
     )
-    return result["embedding"]
-
+    return response.data[0].embedding
 
 async def get_query_embedding(text: str) -> list[float]:
     """
-    Generates an embedding for a query (optimized for retrieval).
+    Generates an embedding for a query (optimized for retrieval) using NVIDIA's API.
     """
-    result = genai.embed_content(
-        model=EMBEDDING_MODEL, content=text, task_type="retrieval_query"
+    response = await client.embeddings.create(
+        input=[text],
+        model=EMBEDDING_MODEL,
+        encoding_format="float",
+        extra_body={"input_type": "query"},
     )
-    return result["embedding"]
+    return response.data[0].embedding

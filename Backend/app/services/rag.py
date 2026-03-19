@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 # Configure NVIDIA client
 client = AsyncOpenAI(
-    api_key=settings.NVIDIA_API_KEY,
+    api_key=settings.NVIDIA_API_KEY or "dummy-key-to-prevent-startup-crash",
     base_url="https://integrate.api.nvidia.com/v1",
 )
 MODEL_NAME = "meta/llama-3.1-70b-instruct"

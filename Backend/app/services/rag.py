@@ -17,7 +17,7 @@ client = AsyncOpenAI(
     api_key=settings.NVIDIA_API_KEY or "dummy-key-to-prevent-startup-crash",
     base_url="https://integrate.api.nvidia.com/v1",
 )
-MODEL_NAME = "meta/llama-3.1-70b-instruct"
+MODEL_NAME = "qwen/qwen2.5-coder-7b-instruct"
 
 
 async def load_system_prompt() -> str:
